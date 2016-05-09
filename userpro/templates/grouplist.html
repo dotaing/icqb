@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}角色管理{% endblock %}
+{% block title2 %}角色管理{% endblock %}
+
+{% block css %}
+        <link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.main.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.grey.css" class="skin-color" />
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+	<div id="myAlert" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="width: 750px;">
+		<div class="modal-header">
+			<button data-dismiss="modal" class="close" type="button">×</button>
+			<h3><span id="name-title">编辑角色权限</span></h3>
+		</div>
+    <div class="modal-body" >
+        <div id="editgroup_body"></div>
+    </div>
+
+    </div>
+<div class="widget-box" style="width: 800px;">
+  <div class="widget-title">
+  </div>
+	<div class="widget-content nopadding">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>组命名</th>
+					<th>包含用户</th>
+                    <th>权限管理</th>
+				</tr>
+			</thead>
+			<tbody>
+            {% for i in UserGroupAll %}
+				<tr>
+                    <td >{{ i.name }}</td>
+                    <td class="taskStatus" >{{ i.name }}</td>
+					<td>
+                    <a class="edit_group" data-toggle="modal" name="{{ i.id }}">编辑角色</a></td>
+				</tr>
+            {% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+ </div style="color:#FF3030"
+ ;">
+     
+{% endblock %}
+{% block js %}
+        <script src="/lib/UniAdmindl/js/jquery.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.ui.custom.js"></script>
+        <script src="/lib/UniAdmindl/js/bootstrap.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.uniform.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.dataTables.min.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.js"></script>
+        <script src="/lib//js/omg.js"></script>
+{% endblock %}
+<input type="submit">

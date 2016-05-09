@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}服务器列表{% endblock %}
+{% block title2 %}服务器列表{% endblock %}
+
+{% block css %}
+        <link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/uniform.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/select2.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.main.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.grey.css" class="skin-color" />
+{% endblock %}
+
+{% block js %}
+        <script src="/lib/UniAdmindl/js/jquery.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.ui.custom.js"></script>
+        <script src="/lib/UniAdmindl/js/bootstrap.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.uniform.js"></script>
+        <script src="/lib/UniAdmindl/js/select2.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.dataTables.min.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.tables.js"></script>
+{% endblock %}
+{% block content %}
+
+<div class="row-fluid">
+					<div class="span12 center" style="text-align: center;">
+						<ul class="quick-actions">
+							<li>
+								<a href="/YunWeiLogTask/">
+									<i class="icon-home"></i>
+									全部日志
+								</a>
+							</li>
+                            <li>
+								<a href="/YunWeiLogTask/?t=1">
+									<i class="icon-shopping-bag"></i>
+									架服任务
+								</a>
+							</li>
+							<li>
+								<a href="/YunWeiLogTask/?t=2">
+									<i class="icon-piechart"></i>
+									合服任务
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-calendar"></i>
+									定时任务
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-piechart"></i>
+									Statistics
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+    <div class="btn-group">
+        <button class="btn btn-primary">选择合服大区</button>
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for i in HostGroupall %}
+                <li><a href="/ServerList/?gid={{ i.id }}" class="btn1" name="{{ i.id }}">{{ i.Name }}</a></li>
+            {% endfor %}
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div><!-- /btn-group -->
+<div class="row-fluid">
+					<div class="span12">
+						<div class="widget-box">
+							<div class="widget-title">
+
+								<h5>{{ ServerAll|length }}台</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<table class="table table-bordered data-table">
+									<thead>
+									<tr>
+									<th>ServerID</th>
+									<th>ServerName</th>
+									<th>ServerHost</th>
+									<th>ServerType</th>
+									</tr>
+									</thead>
+									<tbody>
+                                   {% for i in ServerAll %}
+									<tr class="gradeX">
+									<td class="taskStatus">{{ i.ServerId }}</td>
+                                    <td class="taskStatus">{{ i.Name }}</td>
+                                    <td class="taskStatus">{{ i.Ip }}</td>
+									<td class="center">
+                                        {% ifequal i.Status 1 %}
+                                        <span class="label label-success">正常</span>
+                                        {% endifequal %}
+                                        {% ifequal i.Status 2 %}
+                                        <span class="label label-info">合服！</span>
+                                                                                <a href="/YunWeiLogTask/?tid={{ i.WorkNow }}">查看</a>
+                                        {% endifequal %}
+                                        {% ifequal i.Status 3 %}
+                                        <span class="label">架服</span>
+                                                                                <a>查看</a>
+                                        {% endifequal %}
+                                        {% ifequal i.Status 4 %}
+                                        <span class="label label-info">闲置</span>
+                                        {% endifequal %}
+                                    </td>
+									</tr>
+                                    {% endfor %}
+									</tbody>
+									</table>
+							</div>
+						</div>
+					</div>
+</div>
+{% endblock %}
+

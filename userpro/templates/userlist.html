@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}用户列表{% endblock %}
+{% block title2 %}用户列表{% endblock %}
+
+{% block css %}
+        <link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/uniform.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.main.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.grey.css" class="skin-color" />
+{% endblock %}
+
+
+{% block content %}
+<div class="row-fluid">
+	<div id="myAlert" class="modal hide">
+		<div class="modal-header">
+			<button data-dismiss="modal" class="close" type="button">×</button>
+			<h3>新增用户</h3>
+		</div>
+    <div class="modal-body" >
+	<form class="form-horizontal" method="post" action="/AddUser/" name="basic_validate" id="basic_validate" novalidate="novalidate" />
+        <div class="control-group">
+            <label class="control-label" style="color:#fc7f49;">用户名</label>
+            <div class="controls">
+                <input type="text" name="username" id="username" />
+            </div>
+        </div>
+         <div class="control-group">
+            <label class="control-label" style="color:#fc7f49;">设置密码</label>
+            <div class="controls">
+                <input type="text" name="password" id="add_password" />
+            </div>
+        </div>
+    <div class="control-group">
+			<label class="control-label" style="color:#fc7f49;">所属角色</label>
+			<div class="controls">
+				<select  name="groupid">
+                    {% for i in UserGroupAll %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                    {% endfor %}
+				</select>
+			</div>
+		</div>
+
+      </div>
+      </form>
+		<div class="modal-footer">
+			<input type="submit"  class="btn btn-primary"  id="add_button" value="提交信息">
+		</div>
+	</div>
+
+<div id="myAlert2" class="modal hide" >
+		<div class="modal-header">
+			<button data-dismiss="modal" class="close" type="button">×</button>
+			<h3>修改用户</h3>
+		</div>
+
+        <div class="modal-body" id="edit_user">
+
+        </div>
+
+
+</div>
+
+<a id="edit_button" data-toggle="modal" class="btn btn-primary btn-mini">编辑用户</a>
+    <a href="#myAlert"  data-toggle="modal"  class="btn btn-success btn-mini">增加用户</a>
+    <a id="del_button" class="btn btn-danger btn-mini">删除用户</a>
+   <!-- <a href="#" class="btn btn-warning btn-mini" id="showonuser_button">查看在线用户</a> -->
+<form method="post" id="delu" action="/DelUser/" />
+    <input type="hidden" id="uid" name="uid">
+</form>
+<div class="widget-box">
+  <div class="widget-title">
+	</div>
+	<div class="widget-content nopadding">
+		<table class="table table-bordered table-striped with-check"  >
+			<thead>
+				<tr>
+					<th><i class="icon-resize-vertical"></i></th>
+					<th>用户名字</th>
+					<th>所属角色</th>
+                    <th>用户状态</th>
+                    <th>创建时间</th>
+					<th>登录地址</th>
+					<th>登录时间</th>
+				</tr>
+			</thead>
+			<tbody>
+            {% for i in UserListAll %}
+				<tr>
+					<td class="taskStatus"><input type="checkbox" value="{{ i.id }}" uname="{{ i.username }}"/></td>
+					<td class="taskStatus">{% ifequal i.is_superman 1 %}<span style="color: #FF5151;">{{ i.username }}</span>{% else %}{{ i.username }}{% endifequal %}</td>
+					<td class="taskStatus">{{ i.in_group.name }}</td>
+					<td class="taskStatus">{% ifequal i.is_lock 1 %}<span class="badge badge-success">True</span>{% else %}<span class="badge badge-warning">Flase</span>{% endifequal %}</td>
+					<td class="taskStatus" >{{ i.create_time |date:"Y-m-d H:i:s" }}</td>
+                    <td class="taskStatus" >{{ i.lastlogin_host }}</td>
+                    <td class="taskStatus">{{ i.lastlogin_time|date:"Y-m-d H:i:s" }}</td>
+				</tr>
+            {% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+        <script src="/lib/UniAdmindl/js/jquery.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.ui.custom.js"></script>
+        <script src="/lib/UniAdmindl/js/bootstrap.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.uniform.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.dataTables.min.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.tables.js"></script>
+        <script src="/lib//js/omg.js"></script>
+            <script type="text/javascript" src="/lib/js/jQuery.md5.js"></script>
+{% endblock %}
+<button></button>

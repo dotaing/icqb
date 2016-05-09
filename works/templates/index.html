@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}控制台{% endblock %}
+{% block title2 %}控制台{% endblock %}
+
+{% block css %}
+
+        <link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/fullcalendar.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.main.css" />
+		<link rel="stylesheet" href="/lib/UniAdmindl/css/unicorn.grey.css" class="skin-color" />
+
+{% endblock %}
+
+{% block js %}
+
+        <script src="/lib/UniAdmindl/js/excanvas.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.ui.custom.js"></script>
+        <script src="/lib/UniAdmindl/js/bootstrap.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.flot.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.flot.resize.min.js"></script>
+        <script src="/lib/UniAdmindl/js/jquery.peity.min.js"></script>
+        <script src="/lib/UniAdmindl/js/fullcalendar.min.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.js"></script>
+        <script src="/lib/UniAdmindl/js/unicorn.dashboard.js"></script>
+
+{% endblock %}
+
+{% block content %}
+				<div class="row-fluid">
+					<div class="span12 center" style="text-align: center;">
+						<ul class="stat-boxes">
+							<li>
+								<div class="left peity_bar_good"><span>111,4,9,7,12,33,12,2,3,1,23,72,91</span>+20%</div>
+								<div class="right">
+									<strong>36094</strong>
+									访问量
+								</div>
+							</li>
+							<li>
+								<div class="left peity_bar_neutral"><span>20,15,18,14,10,9,9,9</span>0%</div>
+								<div class="right">
+									<strong>1433</strong>
+									用户
+								</div>
+							</li>
+							<li>
+								<div class="left peity_bar_bad"><span>3,5,9,7,12,20,10</span>-50%</div>
+								<div class="right">
+									<strong>8650</strong>
+									付款
+								</div>
+							</li>
+							<li>
+								<div class="left peity_line_good"><span>12,6,9,23,14,10,17</span>+70%</div>
+								<div class="right">
+									<strong>8650</strong>
+									订单
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+    <div class="row-fluid">
+        <div class="alert alert-info">
+            欢迎来到<strong>UniAdmin后台管理系统</strong>. 别忘记退出哦!
+        <a href="#" data-dismiss="alert" class="close">×</a>
+    </div>
+
+</div>
+{% endblock %}
